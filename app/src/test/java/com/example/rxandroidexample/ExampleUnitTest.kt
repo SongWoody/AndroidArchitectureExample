@@ -1,5 +1,6 @@
 package com.example.rxandroidexample
 
+import io.reactivex.rxjava3.subjects.PublishSubject
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -11,7 +12,25 @@ import org.junit.Assert.*
  */
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun runRxTest() {
+        val items = PublishSubject.create<Int>().apply {
+            onNext(1)
+            onNext(2)
+            onNext(3)
+            onNext(4)
+            onNext(5)
+        }
+
+        items
+            .filter { item ->
+                item % 2 == 0
+            }.subscribe { item ->
+                println("item:  $item")
+            }
+
+        items.onNext(6)
+        items.onNext(7)
+        items.onNext(8)
+        items.onNext(9)
     }
 }
