@@ -1,5 +1,6 @@
 package com.example.rxandroidexample
 
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.junit.Test
 
@@ -32,5 +33,16 @@ class ExampleUnitTest {
         items.onNext(7)
         items.onNext(8)
         items.onNext(9)
+    }
+
+    @Test
+    fun runRxTest1() {
+        val source = Observable.create<String> {
+            it.onNext("Hello")
+            it.onNext("World")
+            it.onComplete()
+        }
+
+        source.subscribe(System.out::println)
     }
 }
