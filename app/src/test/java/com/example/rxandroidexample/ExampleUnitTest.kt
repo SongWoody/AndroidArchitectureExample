@@ -1,6 +1,6 @@
 package com.example.rxandroidexample
 
-import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.*
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.junit.Test
 
@@ -78,6 +78,33 @@ class ExampleUnitTest {
         val source = Observable.fromPublisher(publisher)
         source.subscribe {
             println(it)
+        }
+    }
+
+    @Test
+    fun runRxTest4() {
+        // Single
+        val single = Single.just("Hello World")
+        single.subscribe { s ->
+            println(s)
+        }
+
+        // Maybe
+        val maybe = Maybe.create<String> {
+            it.onSuccess("maybe")
+        }
+        maybe.subscribe { s ->
+            println(s)
+        }
+
+        // Completable
+        val completer = Completable.create {
+            it.onError(Throwable("error~"))
+        }
+        completer.subscribe( {
+            println("success")
+        }) {
+            println("error: ${it.message}")
         }
     }
 }
