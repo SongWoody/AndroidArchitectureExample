@@ -135,4 +135,19 @@ class ExampleUnitTest {
         }
         Thread.sleep(3000)
     }
+
+    @Test
+    fun runAutoConnect() {
+        // 두 개 이상 붙어야 발행된다.
+        val src = Observable.interval(1, TimeUnit.SECONDS)
+            .publish()
+            .autoConnect(2)
+        src.subscribe {
+            println("#1: $it")
+        }
+        src.subscribe {
+            println("#2: $it")
+        }
+        Thread.sleep(3000)
+    }
 }
