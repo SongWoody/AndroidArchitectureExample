@@ -121,4 +121,18 @@ class ExampleUnitTest {
         }
         Thread.sleep(3000)
     }
+
+    @Test
+    fun runHotStream() {
+        val src = Observable.interval(1, TimeUnit.SECONDS).publish()
+        src.connect()
+        src.subscribe {
+            println("#1: $it")
+        }
+        Thread.sleep(3000)
+        src.subscribe {
+            println("#2: $it")
+        }
+        Thread.sleep(3000)
+    }
 }
