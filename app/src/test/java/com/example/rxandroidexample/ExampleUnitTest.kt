@@ -9,6 +9,7 @@ import org.reactivestreams.Publisher
 import org.reactivestreams.Subscriber
 import java.util.concurrent.Executors
 import java.util.concurrent.Future
+import java.util.concurrent.TimeUnit
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -106,5 +107,18 @@ class ExampleUnitTest {
         }) {
             println("error: ${it.message}")
         }
+    }
+
+    @Test
+    fun runColdStream() {
+        val src = Observable.interval(1, TimeUnit.SECONDS)
+        src.subscribe {
+            println("#1: $it")
+        }
+        Thread.sleep(3000)
+        src.subscribe {
+            println("#2: $it")
+        }
+        Thread.sleep(3000)
     }
 }
