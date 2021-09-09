@@ -1,6 +1,7 @@
 package com.example.rxandroidexample
 
 import io.reactivex.rxjava3.core.*
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.junit.Test
 
@@ -149,5 +150,20 @@ class ExampleUnitTest {
             println("#2: $it")
         }
         Thread.sleep(3000)
+    }
+
+    @Test
+    fun runDisposable() {
+        val src: Observable<Long> = Observable.interval(1, TimeUnit.SECONDS);
+        val compositeDisposable = CompositeDisposable()
+        compositeDisposable.add(src.subscribe { println("#1: $it") })
+        compositeDisposable.add(src.subscribe { println("#1: $it") })
+        compositeDisposable.add(src.subscribe { println("#1: $it") })
+        Thread.sleep(2000)
+        compositeDisposable.add(src.subscribe { println("#2: $it") })
+        compositeDisposable.add(src.subscribe { println("#2: $it") })
+        Thread.sleep(2000)
+        compositeDisposable.dispose()
+        Thread.sleep(2000)
     }
 }
