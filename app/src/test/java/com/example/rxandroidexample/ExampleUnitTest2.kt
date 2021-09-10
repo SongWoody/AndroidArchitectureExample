@@ -149,4 +149,93 @@ class ExampleUnitTest2 {
 
         Thread.sleep(3000)
     }
+
+    /**
+     * 중복 제거
+     */
+    @Test
+    fun distinct() {
+        Observable.just(1,2,2,1,3)
+            .distinct()
+            .subscribe {
+                println(it)
+            }
+    }
+
+    @Test
+    fun elementAt() {
+        Observable.just(1,2,3,4,5)
+            .elementAt(3)
+            .subscribe {
+                println(it)
+            }
+    }
+
+    @Test
+    fun filter() {
+        Observable.just(1,2,3,4,5,6)
+            .filter {
+                it % 2 == 0
+            }.subscribe {
+                println("$it")
+            }
+    }
+
+    /**
+     * 일정 시간 간격으로 최근에 발행된 아이템을 발행한다.
+     */
+    @Test
+    fun sample() {
+        Observable.interval(100, TimeUnit.MILLISECONDS)
+            .sample(300, TimeUnit.MILLISECONDS)
+            .subscribe {
+                println("#$it")
+            }
+        Thread.sleep(5000)
+    }
+
+    /**
+     * n개의 아이템을 무시하고 이후에 나오는 아이템을 발행
+     */
+    @Test
+    fun skip() {
+        Observable.just(1,2,3,4,5,6)
+            .skip(2)
+            .subscribe {
+                println("$it")
+            }
+    }
+
+    @Test
+    fun take() {
+        Observable.just(1, 2, 3, 4, 5, 6)
+            .take(2)
+            .subscribe {
+                println("$it")
+            }
+    }
+
+    @Test
+    fun all() {
+        Observable.just(2,4,6,8,10)
+            .all {
+                it % 2 == 0
+            }.subscribe { it ->
+                println("$it")
+            }
+    }
+
+    @Test
+    fun amb() {
+        val list = arrayListOf(
+            Observable.just(1,2,3),
+            Observable.just(2,2,2),
+            Observable.just(4,4,4),
+            Observable.just(9,8,7),
+        )
+        Observable.amb(list)
+            .subscribe {
+                println("$it")
+            }
+    }
 }
