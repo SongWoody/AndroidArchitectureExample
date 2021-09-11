@@ -238,4 +238,111 @@ class ExampleUnitTest2 {
                 println("$it")
             }
     }
+
+    /**
+     * 두 옵저버를 구독하여 최근 두 개의 결과를 취합한다.
+     */
+    @Test
+    fun combineLatest() {
+        val src1 = Observable.create<String> {
+            Thread{
+                it.onNext("A")
+                Thread.sleep(500)
+                it.onNext("B")
+                Thread.sleep(800)
+                it.onNext("C")
+                Thread.sleep(300)
+                it.onNext("D")
+                Thread.sleep(700)
+            }.start()
+        }
+        val src2 = Observable.create<Int> {
+            Thread {
+                it.onNext(100)
+
+                (1..5).forEach { num ->
+                    it.onNext(num)
+                    Thread.sleep(1000)
+                }
+            }.start()
+        }
+        Observable.combineLatest(src1, src2) { str: String, num: Int ->
+            str + num
+        }.subscribe {
+            println("result: $it")
+
+        }
+        Thread.sleep(10000)
+    }
+
+    /**
+     * combineLatest 와 비슷하지만 발행 순서에 영향을 받는다.
+     */
+    @Test
+    fun zip() {
+        val src1 = Observable.create<String> {
+            Thread{
+                it.onNext("A")
+                Thread.sleep(500)
+                it.onNext("B")
+                Thread.sleep(800)
+                it.onNext("C")
+                Thread.sleep(300)
+                it.onNext("D")
+                Thread.sleep(700)
+            }.start()
+        }
+        val src2 = Observable.create<Int> {
+            Thread {
+                it.onNext(100)
+
+                (1..5).forEach { num ->
+                    it.onNext(num)
+                    Thread.sleep(1000)
+                }
+            }.start()
+        }
+        Observable.zip(src1, src2) { str: String, num: Int ->
+            str + num
+        }.subscribe {
+            println("result: $it")
+
+        }
+        Thread.sleep(10000)
+    }
+
+    /**
+     * 여러개의 옵저버를 하개처럼 사용할 수 있다.
+     */
+    @Test
+    fun merge() {
+        val src1 = Observable.create<String> {
+            Thread{
+                it.onNext("A")
+                Thread.sleep(500)
+                it.onNext("B")
+                Thread.sleep(800)
+                it.onNext("C")
+                Thread.sleep(300)
+                it.onNext("D")
+                Thread.sleep(700)
+            }.start()
+        }
+        val src2 = Observable.create<Int> {
+            Thread {
+                it.onNext(100)
+
+                (1..5).forEach { num ->
+                    it.onNext(num)
+                    Thread.sleep(1000)
+                }
+            }.start()
+        }
+        Observable
+            .merge(src1, src2)
+            .subscribe {
+                println("result: $it")
+            }
+        Thread.sleep(10000)
+    }
 }
