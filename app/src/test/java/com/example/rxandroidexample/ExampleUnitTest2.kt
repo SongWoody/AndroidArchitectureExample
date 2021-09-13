@@ -1,8 +1,10 @@
 package com.example.rxandroidexample
 
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.internal.operators.observable.ObservableRange
 import org.junit.Test
+import java.lang.IllegalArgumentException
 import java.util.concurrent.TimeUnit
 
 // rx operation
@@ -344,5 +346,147 @@ class ExampleUnitTest2 {
                 println("result: $it")
             }
         Thread.sleep(10000)
+    }
+
+    @Test
+    fun errorHandling1() {
+        Observable.just("1","2","3","a","5")
+            .map {
+                it.toInt()
+            }.subscribe({
+                println("$it")
+            },{
+                println(it.message)
+            })
+    }
+
+    @Test
+    fun errorHandling2() {
+        Observable.just("1","2","3","a","5")
+            .map {
+                it.toInt()
+            }.onErrorReturn {
+                -1
+            }.subscribe {
+                println("$it")
+            }
+    }
+
+    @Test
+    fun errorHandling3() {
+        Observable.just("1","2","3","a","5")
+            .map {
+                it.toInt()
+            }.onErrorResumeNext {
+                Observable.just(100,200,300)
+            }.subscribe {
+                println("$it")
+            }
+    }
+
+    @Test
+    fun errorHandling4() {
+        Observable.just("1","2","3","a","5")
+            .map {
+                it.toInt()
+            }
+            .retry(2)
+            .subscribe({
+                println("$it")
+            },{
+                println(it.message)
+            })
+    }
+
+    @Test
+    fun errorHandling5() {
+        Observable.just(1,2,3,4,5)
+            .doOnEach {
+                println("value ${it.value}")
+                println("isOnNext ${it.isOnNext}")
+                println("isOnComplete ${it.isOnComplete}")
+                println("isOnError ${it.isOnError}")
+                println("error ${it.error}")
+                println()
+            }
+            .subscribe({
+                println("$it")
+            },{
+                println(it.message)
+            })
+    }
+
+    @Test
+    fun errorHandling6() {
+        Observable.just(1,2,3,4,5)
+            .doOnNext {
+                println("doOnNext")
+                if (it > 3 ) {
+                    throw IllegalArgumentException()
+                }
+            }
+            .subscribe({
+                println("$it")
+            },{
+                println(it)
+            })
+    }
+
+    @Test
+    fun errorHandling7() {
+        val src = Observable.just(1,2,3,4,5)
+            .doOnSubscribe {
+                println("구독 시작")
+            }
+        src.subscribe({
+            println("$it")
+        },{
+            println(it)
+        })
+
+        src.subscribe({
+            println("$it")
+        },{
+            println(it)
+        })
+    }
+
+    @Test
+    fun errorHandling8() {
+        Observable.just("1","2","3","a","5")
+            .map {
+                it.toInt()
+            }
+            .doOnComplete {
+                println("doOnComplete") // 에러가 발생하면 호룰 안 됨
+            }.doOnTerminate {
+                println("doOnTerminate") // 에러가 발생해도 호출 됨
+            }.doOnError {
+                println("doOnError")
+            }.subscribe {
+                println("$it")
+            }
+    }
+
+    @Test
+    fun errorHandling9() {
+        val src = Observable.interval(500, TimeUnit.MILLISECONDS)
+            .doOnDispose {
+                println("doOnDispose")
+            }
+            .doOnComplete {
+                println("doOnComplete")
+            }
+            .doOnTerminate {
+                println("doOnTerminate")
+            }
+            .doFinally {
+                println("doFinally")
+            }
+        val disposable = src.subscribe {
+            println("$it")
+        }
+        Thread.sleep(3000)
+        disposable.dispose()
     }
 }
