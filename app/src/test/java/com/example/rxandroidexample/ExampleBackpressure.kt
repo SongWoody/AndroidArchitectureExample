@@ -61,4 +61,22 @@ class ExampleBackpressure {
             }
         Thread.sleep(10000)
     }
+
+    // Interval 에 대한 Missing BackpressureException 예제
+    @Test
+    fun ex4() {
+        Flowable.interval(10, TimeUnit.MILLISECONDS)
+            .observeOn(Schedulers.io())
+            .map {
+                Thread.sleep(2000)
+                println("발행 $it")
+                return@map "$it"
+            }
+            .subscribe({
+                println("소비 $it")
+            }, {
+                println(it.message)
+            })
+        Thread.sleep(10000)
+    }
 }
