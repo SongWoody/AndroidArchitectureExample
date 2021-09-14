@@ -79,4 +79,22 @@ class ExampleBackpressure {
             })
         Thread.sleep(10000)
     }
+
+    @Test
+    fun ex5() {
+        Flowable.interval(10, TimeUnit.MILLISECONDS)
+            .onBackpressureBuffer()
+            .observeOn(Schedulers.newThread())
+            .map {
+                Thread.sleep(2000)
+                println("발행 $it")
+                return@map "$it"
+            }
+            .subscribe({
+                println("소비 $it")
+            }, {
+                println(it.message)
+            })
+        Thread.sleep(10000)
+    }
 }
