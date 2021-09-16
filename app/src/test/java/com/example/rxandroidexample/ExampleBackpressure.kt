@@ -1,7 +1,6 @@
 package com.example.rxandroidexample
 
-import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.*
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.junit.Test
 import java.util.concurrent.TimeUnit
@@ -80,6 +79,7 @@ class ExampleBackpressure {
         Thread.sleep(10000)
     }
 
+    // onBackpressureBuffer
     @Test
     fun ex5() {
         Flowable.interval(10, TimeUnit.MILLISECONDS)
@@ -95,6 +95,68 @@ class ExampleBackpressure {
             }, {
                 println(it.message)
             })
+        Thread.sleep(10000)
+    }
+
+    // onBackpressureLatest
+    @Test
+    fun ex6() {
+        Flowable.interval(10, TimeUnit.MILLISECONDS)
+            .onBackpressureLatest()
+            .map {
+                println("발생 $it")
+                return@map "$it"
+            }
+            .observeOn(Schedulers.newThread())
+            .subscribe({
+                Thread.sleep(500)
+                println("소비 $it")
+            }, {
+                println(it.message)
+            })
+        Thread.sleep(10000)
+    }
+
+    // onBackpressureDrop
+    @Test
+    fun ex7() {
+        Flowable.interval(10, TimeUnit.MILLISECONDS)
+            .onBackpressureDrop {
+                println("드롭 $it")
+            }
+            .map {
+                println("발생 $it")
+                return@map "$it"
+            }
+            .observeOn(Schedulers.newThread())
+            .subscribe({
+                Thread.sleep(50)
+                println("소비 $it")
+            }, {
+                println(it.message)
+            })
+        Thread.sleep(20000)
+    }
+
+    @Test
+    fun ex8() {
+        Flowable.create(object : FlowableOnSubscribe<String> {
+            override fun subscribe(emitter: FlowableEmitter<String>) {
+                (1..3000).forEach {
+                    if (emitter.isCancelled) {
+                        return
+                    }
+                    emitter.onNext("$it")
+                }
+                emitter.onComplete()
+            }
+        }, BackpressureStrategy.BUFFER)
+            .subscribeOn(Schedulers.computation())
+            .observeOn(Schedulers.newThread())
+            .subscribe {
+                Thread.sleep(20)
+                println("소비 $it")
+            }
         Thread.sleep(10000)
     }
 }
