@@ -31,17 +31,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        dataBinding.selectButton.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
-                val todoList = db.todoDao().getAllTodoList()
-                todoList.map { "id: ${it.id} title: ${it.title} " }.forEach {
-                    dataBinding.test.append("$it ,")
-                }
-
+        db.todoDao().getAllTodoList().observe(this) { todoList ->
+            dataBinding.test.text = ""
+            todoList.map { "id: ${it.id} title: ${it.title} " }.forEach {
+                dataBinding.test.append("$it ,")
             }
         }
-
-
-
     }
 }

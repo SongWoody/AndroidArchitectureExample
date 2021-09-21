@@ -17,21 +17,12 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/selectButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="select"
-            app:layout_constraintTop_toBottomOf="@id/addButton"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
-
         <TextView
             android:id="@+id/test"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:text="select"
-            app:layout_constraintTop_toBottomOf="@id/selectButton"
+            app:layout_constraintTop_toBottomOf="@id/addButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
