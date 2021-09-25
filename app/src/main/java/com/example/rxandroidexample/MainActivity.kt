@@ -12,15 +12,7 @@ import com.example.rxandroidexample.room.TodoDatabase
 class MainActivity : AppCompatActivity() {
     private lateinit var dataBinding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels {
-        object: ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-                    return MainViewModel(TodoDatabase.getInstance(application)) as T
-                }
-                throw IllegalArgumentException("Factory cannot make ViewModel of type ${modelClass.simpleName}")
-            }
-        }
+        MainViewModel.Factory(TodoDatabase.getInstance(application))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
