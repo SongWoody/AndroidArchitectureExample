@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RxAndroidExample">
         <activity
-            android:name=".RegistrationTodoActivity"
+            android:name=".DiExampleActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
@@ -21,6 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".RegistrationTodoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".TodoMainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

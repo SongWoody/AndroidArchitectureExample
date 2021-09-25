@@ -9,15 +9,15 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.rxandroidexample.room.Todo
 import com.example.rxandroidexample.room.TodoDatabase
 
-class MainViewModel(todoDb: TodoDatabase) : ViewModel() {
+class TodoMainViewModel(todoDb: TodoDatabase) : ViewModel() {
 
     class Factory constructor(
         private val todoDb: TodoDatabase
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-                return MainViewModel(todoDb) as T
+            if (modelClass.isAssignableFrom(TodoMainViewModel::class.java)) {
+                return TodoMainViewModel(todoDb) as T
             }
             throw IllegalArgumentException("Factory cannot make ViewModel of type ${modelClass.simpleName}")
         }

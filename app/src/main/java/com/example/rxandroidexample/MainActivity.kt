@@ -1,24 +1,23 @@
 package com.example.rxandroidexample
 
-import android.os.Bundle
-import androidx.activity.viewModels
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.example.rxandroidexample.databinding.ActivityMainBinding
-import com.example.rxandroidexample.room.TodoDatabase
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var dataBinding: ActivityMainBinding
-    private val viewModel: MainViewModel by viewModels {
-        MainViewModel.Factory(TodoDatabase.getInstance(application))
-    }
-
+    lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        dataBinding.viewModel = viewModel
-        dataBinding.lifecycleOwner = this
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        binding.todoButton.setOnClickListener {
+            startActivity(Intent(this, TodoMainActivity::class.java))
+        }
+
+        binding.diButton.setOnClickListener {
+            startActivity(Intent(this, DiExampleActivity::class.java))
+        }
     }
 }
