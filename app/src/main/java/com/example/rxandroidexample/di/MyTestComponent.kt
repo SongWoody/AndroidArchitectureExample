@@ -11,6 +11,8 @@ interface MyTestComponent {
     fun getHello(): String
     @Named("world")
     fun getWorld(): String
+    @Hi
+    fun getHi(): String
 
     fun getAge(): Int
 

@@ -20,6 +20,12 @@ class MyTestModule2 {
     }
 
     @Provides
+    @Hi
+    fun provideHi(): String {
+        return "Hi"
+    }
+
+    @Provides
     fun provideAge(): Int {
         return 99
     }

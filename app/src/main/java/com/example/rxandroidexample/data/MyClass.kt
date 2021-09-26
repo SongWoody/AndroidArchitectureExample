@@ -1,6 +1,7 @@
 package com.example.rxandroidexample.data
 
 import com.example.rxandroidexample.di.DaggerMyTestComponent
+import com.example.rxandroidexample.di.Hi
 import dagger.MembersInjector
 import javax.inject.Inject
 import javax.inject.Named
