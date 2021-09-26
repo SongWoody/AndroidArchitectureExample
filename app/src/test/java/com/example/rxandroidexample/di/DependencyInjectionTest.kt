@@ -9,13 +9,13 @@ class DependencyInjectionTest {
     @Test
     fun exampleHelloWorld() {
         val myComponent = DaggerMyTestComponent.create()
-        println("myComponent: string ${myComponent.getString()}")
+        println("myComponent: string ${myComponent.getHello()}")
     }
 
     @Test
     fun exampleExtend() {
         val myComponent = DaggerMyTestComponent.create()
-        println("myComponent: string ${myComponent.getString()}")
+        println("myComponent: string ${myComponent.getWorld()}")
         println("myComponent: age ${myComponent.getAge()}")
     }
 
