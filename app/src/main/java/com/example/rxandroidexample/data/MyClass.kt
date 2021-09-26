@@ -1,6 +1,7 @@
 package com.example.rxandroidexample.data
 
 import com.example.rxandroidexample.di.DaggerMyTestComponent
+import dagger.MembersInjector
 import javax.inject.Inject
 
 class MyClass {
@@ -8,7 +9,7 @@ class MyClass {
     lateinit var myTitle: String
     @Inject
     @JvmField
-    public var myAge: Int = 0
+    var myAge: Int = 0
 
     init {
         DaggerMyTestComponent.create().inject(this)
