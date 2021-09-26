@@ -1,4 +1,4 @@
-package com.example.rxandroidexample.di
+package com.example.rxandroidexample.di.qualifier
 
 import javax.inject.Qualifier
 
