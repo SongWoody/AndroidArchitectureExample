@@ -1,6 +1,7 @@
 package com.example.rxandroidexample.di
 
 import com.example.rxandroidexample.data.MyClass
+import com.example.rxandroidexample.data.MySetFoo
 import org.junit.Assert
 import org.junit.Test
 
@@ -53,5 +54,16 @@ class DependencyInjectionTest {
         Assert.assertEquals(myComponent2.getSingletonRandom(), myComponent2.getSingletonRandom())
 
         Assert.assertNotEquals(myComponent1.getSingletonRandom(), myComponent2.getSingletonRandom())
+    }
+
+    @Test
+    fun exampleSet() {
+        val component = DaggerSetComponent.create()
+        val foo = MySetFoo()
+        component.inject(foo)
+
+        foo.strings?.forEach {
+            println("it = $it")
+        }
     }
 }
