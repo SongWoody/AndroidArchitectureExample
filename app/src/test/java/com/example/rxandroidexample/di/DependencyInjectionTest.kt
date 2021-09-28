@@ -74,5 +74,8 @@ class DependencyInjectionTest {
         println("mainComponent.getText():  ${mainComponent.getText()}")
         println("mainComponent.getNumber(): ${mainComponent.getNumber()}")
 
+        val testSubComponent = mainComponent.getTestObjectComponent().create()
+        val testObj = testSubComponent.getTestObj()
+        println("${testObj.name} // ${testObj.age}")
     }
 }
