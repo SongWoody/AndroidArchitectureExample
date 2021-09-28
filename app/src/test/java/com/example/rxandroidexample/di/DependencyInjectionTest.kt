@@ -2,6 +2,7 @@ package com.example.rxandroidexample.di
 
 import com.example.rxandroidexample.data.MyClass
 import com.example.rxandroidexample.data.MySetFoo
+import com.example.rxandroidexample.di.sub.DaggerMainComponent
 import org.junit.Assert
 import org.junit.Test
 
@@ -65,5 +66,13 @@ class DependencyInjectionTest {
         foo.strings?.forEach {
             println("it = $it")
         }
+    }
+
+    @Test
+    fun exampleMyTest() {
+        val mainComponent = DaggerMainComponent.create()
+        println("mainComponent.getText():  ${mainComponent.getText()}")
+        println("mainComponent.getNumber(): ${mainComponent.getNumber()}")
+
     }
 }
