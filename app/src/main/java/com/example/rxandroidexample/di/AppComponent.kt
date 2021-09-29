@@ -1,23 +1,19 @@
 package com.example.rxandroidexample.di
 
-import android.content.Context
-import com.example.rxandroidexample.room.TodoDatabase
+import com.example.rxandroidexample.MyApplication
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component
+@Component(modules = [AppModule::class])
 interface AppComponent {
 
-    @Component.Builder
-    interface Builder {
-        @BindsInstance
-        fun setContext(context: Context): Builder
-        @BindsInstance
-        fun setTodoDatabase(db: TodoDatabase): Builder
-        fun build(): AppComponent
+    @Component.Factory
+    interface Factory {
+        fun create(
+            @BindsInstance app: MyApplication,
+            appModule: AppModule
+        ): AppComponent
     }
-
-    fun todoDatabase(): TodoDatabase
 }
