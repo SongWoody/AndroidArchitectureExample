@@ -1,5 +1,6 @@
 package com.example.rxandroidexample.di
 
+import com.example.rxandroidexample.MainActivity
 import com.example.rxandroidexample.MyApplication
 import dagger.BindsInstance
 import dagger.Component
@@ -16,4 +17,6 @@ interface AppComponent {
             appModule: AppModule
         ): AppComponent
     }
+
+    fun inject(activity: MainActivity)
 }
