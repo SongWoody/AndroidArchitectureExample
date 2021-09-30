@@ -11,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RxAndroidExample">
         <activity
-            android:name=".DiExampleActivity"
+            android:name=".scene.DiExampleActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".scene.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,10 +23,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegistrationTodoActivity"
+            android:name=".scene.registration.RegistrationTodoActivity"
             android:exported="true" />
         <activity
-            android:name=".TodoMainActivity"
+            android:name=".scene.todo.TodoMainActivity"
             android:exported="true" />
     </application>
 

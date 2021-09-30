@@ -1,4 +1,4 @@
-package com.example.rxandroidexample
+package com.example.rxandroidexample.scene.main
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -6,7 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
+import com.example.rxandroidexample.scene.DiExampleActivity
+import com.example.rxandroidexample.MyApplication
+import com.example.rxandroidexample.R
 import com.example.rxandroidexample.databinding.ActivityMainBinding
+import com.example.rxandroidexample.scene.todo.TodoMainActivity
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -27,16 +31,5 @@ class MainActivity : AppCompatActivity() {
         binding.diButton.setOnClickListener {
             startActivity(Intent(this, DiExampleActivity::class.java))
         }
-
-        test()
-    }
-
-    private fun test() {
-        if (sharedPreferences != null) {
-            Log.i("Songyungi", "sharedPreferences is not null")
-        } else {
-            Log.i("Songyungi", "sharedPreferences is not null")
-        }
-
     }
 }

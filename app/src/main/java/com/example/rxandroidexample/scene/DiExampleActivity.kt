@@ -1,8 +1,9 @@
-package com.example.rxandroidexample
+package com.example.rxandroidexample.scene
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import com.example.rxandroidexample.R
 import com.example.rxandroidexample.databinding.ActivityDiExampleBinding
 
 class DiExampleActivity : AppCompatActivity() {

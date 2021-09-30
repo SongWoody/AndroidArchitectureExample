@@ -1,4 +1,4 @@
-package com.example.rxandroidexample
+package com.example.rxandroidexample.scene.todo
 
 import android.content.Intent
 import android.view.View
@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.rxandroidexample.room.Todo
 import com.example.rxandroidexample.room.TodoDatabase
+import com.example.rxandroidexample.scene.registration.RegistrationTodoActivity
 
 class TodoMainViewModel(todoDb: TodoDatabase) : ViewModel() {
 

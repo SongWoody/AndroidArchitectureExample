@@ -1,9 +1,10 @@
-package com.example.rxandroidexample
+package com.example.rxandroidexample.scene.todo
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.example.rxandroidexample.R
 import com.example.rxandroidexample.databinding.ActivityTodoMainBinding
 import com.example.rxandroidexample.room.TodoDatabase
 

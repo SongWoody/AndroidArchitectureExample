@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.rxandroidexample.TodoMainViewModel" />
+            type="com.example.rxandroidexample.scene.todo.TodoMainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,7 +11,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".TodoMainActivity">
+        tools:context=".scene.todo.TodoMainActivity">
 
         <TextView
             android:id="@+id/test"

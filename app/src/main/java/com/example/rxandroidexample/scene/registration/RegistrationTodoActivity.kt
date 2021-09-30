@@ -1,11 +1,10 @@
-package com.example.rxandroidexample
+package com.example.rxandroidexample.scene.registration
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import com.example.rxandroidexample.R
 import com.example.rxandroidexample.databinding.ActivityRegistrationTodoBinding
 import com.example.rxandroidexample.room.TodoDatabase
 
