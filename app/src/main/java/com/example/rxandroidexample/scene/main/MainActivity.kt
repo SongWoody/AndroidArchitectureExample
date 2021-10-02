@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         component = (application as MyApplication).appComponent
             .mainActivityComponentBuilder()
-            .setModule(MainActivityModule())
             .setActivity(this)
             .build()
         component.inject(this)

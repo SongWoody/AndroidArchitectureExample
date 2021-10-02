@@ -14,7 +14,6 @@ interface MainActivityComponent {
 
     @Subcomponent.Builder
     interface Builder {
-        fun setModule(module: MainActivityModule): Builder
         @BindsInstance
         fun setActivity(activity: MainActivity): Builder
         fun build(): MainActivityComponent

@@ -9,7 +9,7 @@ import com.example.rxandroidexample.di.AppModule
 class MyApplication: Application() {
 
     val appComponent: AppComponent by lazy {
-        DaggerAppComponent.factory().create(this, AppModule())
+        DaggerAppComponent.factory().create(this)
     }
 
     override fun onCreate() {

@@ -10,7 +10,6 @@ interface MainFragmentComponent {
 
     @Subcomponent.Builder
     interface Builder {
-        fun setModule(module: MainFragmentModule): Builder
         @BindsInstance
         fun setFragment(fragment: MainFragment): Builder
         fun build(): MainFragmentComponent

@@ -40,7 +40,6 @@ class MainFragment : Fragment() {
         (activity as? MainActivity)?.let {
             it.component
                 .mainFragmentComponentBuilder
-                .setModule(MainFragmentModule())
                 .setFragment(this)
                 .build()
                 .inject(this)
