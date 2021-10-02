@@ -2,6 +2,7 @@ package com.example.rxandroidexample.di
 
 import com.example.rxandroidexample.scene.main.MainActivity
 import com.example.rxandroidexample.MyApplication
+import com.example.rxandroidexample.scene.main.MainActivityComponent
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -18,5 +19,5 @@ interface AppComponent {
         ): AppComponent
     }
 
-    fun inject(activity: MainActivity)
+    fun mainActivityComponentBuilder(): MainActivityComponent.Builder
 }
