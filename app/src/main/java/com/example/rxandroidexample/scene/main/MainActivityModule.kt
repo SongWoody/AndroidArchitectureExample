@@ -2,17 +2,15 @@ package com.example.rxandroidexample.scene.main
 
 import android.util.Log
 import com.example.rxandroidexample.di.scope.ActivityScope
+import com.example.rxandroidexample.di.scope.FragmentScope
 import com.example.rxandroidexample.scene.main.fragment.MainFragment
-import com.example.rxandroidexample.scene.main.fragment.MainFragmentComponent
-import dagger.Binds
+import com.example.rxandroidexample.scene.main.fragment.MainFragmentModule
 import dagger.Module
 import dagger.Provides
-import dagger.android.AndroidInjector
-import dagger.multibindings.ClassKey
-import dagger.multibindings.IntoMap
+import dagger.android.ContributesAndroidInjector
 import javax.inject.Named
 
-@Module(subcomponents = [MainFragmentComponent::class])
+@Module
 abstract class MainActivityModule {
     companion object {
         @Named("activity")
@@ -24,8 +22,7 @@ abstract class MainActivityModule {
         }
     }
 
-    @Binds
-    @IntoMap
-    @ClassKey(MainFragment::class)
-    abstract fun bindInjectorFactory(factory: MainFragmentComponent.Factory): AndroidInjector.Factory<*>
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [MainFragmentModule::class])
+    abstract fun mainFragment(): MainFragment
 }

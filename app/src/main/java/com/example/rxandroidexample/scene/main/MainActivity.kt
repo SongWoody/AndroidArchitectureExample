@@ -1,22 +1,18 @@
 package com.example.rxandroidexample.scene.main
 
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
-import com.example.rxandroidexample.MyApplication
 import com.example.rxandroidexample.R
 import com.example.rxandroidexample.databinding.ActivityMainBinding
 import com.example.rxandroidexample.scene.main.fragment.MainFragment
 import dagger.android.AndroidInjection
-import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
+import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 import javax.inject.Named
 
-class MainActivity : AppCompatActivity(), HasAndroidInjector {
+class MainActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var androidInjector: DispatchingAndroidInjector<Any>
     @Named("app")
@@ -25,11 +21,8 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
     @Named("activity")
     @Inject
     lateinit var activityName: String
-    @Inject
-    lateinit var sharedPreferences: SharedPreferences
 
     lateinit var binding: ActivityMainBinding
-    lateinit var component: MainActivityComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -43,9 +36,5 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
             .commit()
 
         Log.i("MainActivity", "activityName $activityName")
-    }
-
-    override fun androidInjector(): AndroidInjector<Any> {
-        return androidInjector
     }
 }
