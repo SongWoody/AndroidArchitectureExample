@@ -3,13 +3,15 @@ package com.example.rxandroidexample.scene.main.fragment
 import com.example.rxandroidexample.di.scope.FragmentScope
 import dagger.Module
 import dagger.Provides
+import javax.inject.Named
 import kotlin.random.Random
 
 @Module
 class MainFragmentModule {
+    @Named("fragment")
     @Provides
     @FragmentScope
-    fun provideInt(): Int {
-        return Random(2).nextInt()
+    fun provideFragment(): String {
+        return "Main Fragment"
     }
 }
