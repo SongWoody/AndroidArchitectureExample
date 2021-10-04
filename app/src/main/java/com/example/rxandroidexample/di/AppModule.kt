@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.rxandroidexample.MyApplication
 import com.example.rxandroidexample.di.scope.ActivityScope
+
 import com.example.rxandroidexample.scene.main.MainActivity
 import com.example.rxandroidexample.scene.main.MainActivityModule
 import dagger.Module
@@ -16,13 +17,6 @@ import javax.inject.Singleton
 abstract class AppModule {
 
     companion object {
-        @Named("app")
-        @Provides
-        @Singleton
-        fun provideString(): String {
-            return "My Application"
-        }
-
         @Provides
         @Singleton
         fun provideShredPreference(myApplication: MyApplication): SharedPreferences {

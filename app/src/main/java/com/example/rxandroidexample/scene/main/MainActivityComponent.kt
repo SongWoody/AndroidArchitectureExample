@@ -1,7 +1,6 @@
 package com.example.rxandroidexample.scene.main
 
 import com.example.rxandroidexample.di.scope.ActivityScope
-import com.example.rxandroidexample.scene.main.fragment.MainFragmentComponent
 import dagger.Subcomponent
 import dagger.android.AndroidInjector
 
