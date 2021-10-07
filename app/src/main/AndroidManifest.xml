@@ -25,9 +25,6 @@
         <activity
             android:name=".scene.registration.RegistrationTodoActivity"
             android:exported="true" />
-        <activity
-            android:name=".scene.todo.TodoMainActivity"
-            android:exported="true" />
     </application>
 
 </manifest>

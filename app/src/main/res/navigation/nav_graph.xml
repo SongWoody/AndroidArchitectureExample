@@ -13,10 +13,19 @@
         <action
             android:id="@+id/action_mainFragment_to_secondFragment"
             app:destination="@id/secondFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_todoListFragment"
+            app:destination="@id/todoListFragment" />
     </fragment>
     <fragment
         android:id="@+id/secondFragment"
         android:name="com.example.rxandroidexample.SecondFragment"
         android:label="second_fragment"
         tools:layout="@layout/second_fragment" />
+    <fragment
+        android:id="@+id/todoListFragment"
+        android:name="com.example.rxandroidexample.scene.todo.TodoListFragment"
+        android:label="fragment_todo_list"
+        tools:layout="@layout/fragment_todo_list" />
+
 </navigation>

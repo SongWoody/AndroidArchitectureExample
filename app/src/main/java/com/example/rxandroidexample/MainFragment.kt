@@ -28,8 +28,12 @@ class MainFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        binding.button.setOnClickListener {
+        binding.moveSecondFragmentButton.setOnClickListener {
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToSecondFragment())
+        }
+
+        binding.moveTodoFragmentButton.setOnClickListener {
+            findNavController().navigate(MainFragmentDirections.actionMainFragmentToTodoListFragment())
         }
 
         return binding.root
