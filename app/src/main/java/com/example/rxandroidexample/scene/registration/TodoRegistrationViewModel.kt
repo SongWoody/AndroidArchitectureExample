@@ -9,15 +9,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class RegistrationTodoViewModel(private val todoDb: TodoDatabase): ViewModel(){
+class TodoRegistrationViewModel(private val todoDb: TodoDatabase): ViewModel(){
 
     class Factory constructor(
         private val todoDb: TodoDatabase
     ): ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(RegistrationTodoViewModel::class.java)) {
-                return RegistrationTodoViewModel(todoDb) as T
+            if (modelClass.isAssignableFrom(TodoRegistrationViewModel::class.java)) {
+                return TodoRegistrationViewModel(todoDb) as T
             }
             throw IllegalArgumentException("Factory cannot make ViewModel of type ${modelClass.simpleName}")
         }

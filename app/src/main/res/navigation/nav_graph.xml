@@ -26,6 +26,14 @@
         android:id="@+id/todoListFragment"
         android:name="com.example.rxandroidexample.scene.todo.TodoListFragment"
         android:label="fragment_todo_list"
-        tools:layout="@layout/fragment_todo_list" />
+        tools:layout="@layout/fragment_todo_list" >
+        <action
+            android:id="@+id/action_todoListFragment_to_todoRegistrationFragment"
+            app:destination="@id/todoRegistrationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/todoRegistrationFragment"
+        android:name="com.example.rxandroidexample.scene.registration.TodoRegistrationFragment"
+        android:label="TodoRegistrationFragment" />
 
 </navigation>

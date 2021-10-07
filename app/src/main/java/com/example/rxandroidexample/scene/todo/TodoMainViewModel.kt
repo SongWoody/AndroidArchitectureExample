@@ -1,14 +1,13 @@
 package com.example.rxandroidexample.scene.todo
 
-import android.content.Intent
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDirections
 import com.example.rxandroidexample.room.Todo
 import com.example.rxandroidexample.room.TodoDatabase
-import com.example.rxandroidexample.scene.registration.RegistrationTodoActivity
+import com.example.rxandroidexample.util.SingleLiveEvent
 
 class TodoMainViewModel(todoDb: TodoDatabase) : ViewModel() {
 
@@ -24,6 +23,8 @@ class TodoMainViewModel(todoDb: TodoDatabase) : ViewModel() {
         }
     }
 
+    val navEvent = SingleLiveEvent<NavDirections>()
+
     private val todoList: LiveData<List<Todo>> = todoDb.todoDao().getAllTodoList()
     val todoText: LiveData<String> = Transformations.map(todoList) { totoList ->
         var text = ""
@@ -33,7 +34,7 @@ class TodoMainViewModel(todoDb: TodoDatabase) : ViewModel() {
         return@map text
     }
 
-    fun moveRegistrationActivity(v: View) {
-        v.context.startActivity(Intent(v.context, RegistrationTodoActivity::class.java))
+    fun moveRegistrationActivity() {
+        navEvent.value = TodoListFragmentDirections.actionTodoListFragmentToTodoRegistrationFragment()
     }
 }
