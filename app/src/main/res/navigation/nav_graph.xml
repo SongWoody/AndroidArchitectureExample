@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/startFragment">
 
     <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.example.rxandroidexample.MainFragment"
+        android:id="@+id/startFragment"
+        android:name="com.example.rxandroidexample.scene.start.StartFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" >
+        tools:layout="@layout/fragment_start" >
         <action
             android:id="@+id/action_mainFragment_to_secondFragment"
             app:destination="@id/secondFragment" />
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/secondFragment"
-        android:name="com.example.rxandroidexample.SecondFragment"
+        android:name="com.example.rxandroidexample.scene.second.SecondFragment"
         android:label="second_fragment"
         tools:layout="@layout/second_fragment" />
     <fragment
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/todoRegistrationFragment"
-        android:name="com.example.rxandroidexample.scene.registration.TodoRegistrationFragment"
+        android:name="com.example.rxandroidexample.scene.todo.TodoRegistrationFragment"
         android:label="TodoRegistrationFragment" />
 
 </navigation>

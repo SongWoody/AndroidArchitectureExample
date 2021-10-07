@@ -5,12 +5,11 @@ import android.content.SharedPreferences
 import com.example.rxandroidexample.MyApplication
 import com.example.rxandroidexample.di.scope.ActivityScope
 
-import com.example.rxandroidexample.scene.main.MainActivity
-import com.example.rxandroidexample.scene.main.MainActivityModule
+import com.example.rxandroidexample.scene.MainActivity
+import com.example.rxandroidexample.scene.MainActivityModule
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module

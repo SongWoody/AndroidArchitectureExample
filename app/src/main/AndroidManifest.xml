@@ -11,10 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RxAndroidExample">
         <activity
-            android:name=".scene.DiExampleActivity"
-            android:exported="true" />
-        <activity
-            android:name=".scene.main.MainActivity"
+            android:name=".scene.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

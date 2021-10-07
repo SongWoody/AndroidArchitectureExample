@@ -1,4 +1,4 @@
-package com.example.rxandroidexample
+package com.example.rxandroidexample.scene.second
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.rxandroidexample.R
 
 class SecondFragment : Fragment() {
 
@@ -25,7 +26,6 @@ class SecondFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(SecondViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }

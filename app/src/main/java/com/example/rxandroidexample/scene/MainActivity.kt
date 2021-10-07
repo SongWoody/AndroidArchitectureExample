@@ -1,4 +1,4 @@
-package com.example.rxandroidexample.scene.main
+package com.example.rxandroidexample.scene
 
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil

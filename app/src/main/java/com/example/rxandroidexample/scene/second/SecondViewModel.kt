@@ -1,4 +1,4 @@
-package com.example.rxandroidexample
+package com.example.rxandroidexample.scene.second
 
 import androidx.lifecycle.ViewModel
 
