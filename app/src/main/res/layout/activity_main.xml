@@ -8,12 +8,12 @@
         tools:context=".scene.main.MainActivity">
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/container"
+            android:id="@+id/nav_host_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:navGraph="@navigation/nav_graph"
-            app:defaultNavHost="false"
-            android:name="com.example.rxandroidexample.MainFragment"
+            app:defaultNavHost="true"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

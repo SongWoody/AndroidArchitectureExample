@@ -1,13 +1,11 @@
 package com.example.rxandroidexample
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.navigation.fragment.NavHostFragment
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rxandroidexample.databinding.MainFragmentBinding
 
@@ -30,10 +28,9 @@ class MainFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-//        binding.button.setOnClickListener {
-//            findNavController().navigate(MainFragmentDirections.actionMainFragmentToSecondFragment())
-//        }
-
+        binding.button.setOnClickListener {
+            findNavController().navigate(MainFragmentDirections.actionMainFragmentToSecondFragment())
+        }
 
         return binding.root
     }
