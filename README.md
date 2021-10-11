@@ -1,0 +1,5 @@
+# AndroidArchitectureExample
+
+Todo
+- RecyclerView
+- Dagger
