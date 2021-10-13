@@ -3,3 +3,4 @@
 Todo
 - RecyclerView
 - Dagger
+- StartActivity
