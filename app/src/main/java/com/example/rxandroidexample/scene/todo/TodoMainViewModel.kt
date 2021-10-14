@@ -9,7 +9,7 @@ import com.example.rxandroidexample.room.Todo
 import com.example.rxandroidexample.room.TodoDatabase
 import com.example.rxandroidexample.util.SingleLiveEvent
 
-class TodoMainViewModel(todoDb: TodoDatabase) : ViewModel() {
+class TodoMainViewModel(val todoDb: TodoDatabase) : ViewModel() {
 
     class Factory constructor(
         private val todoDb: TodoDatabase

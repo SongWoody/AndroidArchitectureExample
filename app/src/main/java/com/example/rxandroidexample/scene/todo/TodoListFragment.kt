@@ -1,6 +1,7 @@
 package com.example.rxandroidexample.scene.todo
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +37,10 @@ class TodoListFragment : Fragment() {
     private fun initialize() {
         viewModel.navEvent.observe(this) {
             findNavController().navigate(it)
+        }
+
+        viewModel.todoDb.todoDao().getAllTodoList().observe(this.viewLifecycleOwner) {
+            Log.i("Woody", "it = ${it.size}")
         }
     }
 }
