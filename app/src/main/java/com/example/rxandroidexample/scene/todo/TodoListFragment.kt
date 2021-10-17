@@ -43,12 +43,11 @@ class TodoListFragment : Fragment() {
 
         viewModel.todoDb.todoDao().getAllTodoList().observe(this.viewLifecycleOwner) { todoList ->
             Log.i("Woody", "it = ${todoList.size}")
-            CustomRecyclerViewAdapter().apply {
-                this.setItems(todoList)
-            }
             binding.todoRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             if (binding.todoRecyclerView.adapter == null) {
-                CustomRecyclerViewAdapter().apply {
+                CustomRecyclerViewAdapter(
+                    TodoDatabase.getInstance(this.requireActivity().application)
+                ).apply {
                     this.setItems(todoList)
                 }.also {
                     binding.todoRecyclerView.adapter = it

@@ -5,9 +5,9 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Todo(
-    val title: String,
-    val description: String,
-    val isChecked: Boolean
+    var title: String,
+    var description: String,
+    var isChecked: Boolean
 ) {
     @PrimaryKey(autoGenerate = true) var id: Int = 0
 }

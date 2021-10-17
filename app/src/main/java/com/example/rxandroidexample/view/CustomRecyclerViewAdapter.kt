@@ -3,16 +3,24 @@ package com.example.rxandroidexample.view
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rxandroidexample.databinding.ViewTodoInfoCardBinding
 import com.example.rxandroidexample.room.Todo
+import com.example.rxandroidexample.room.TodoDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class CustomRecyclerViewAdapter: RecyclerView.Adapter<CustomRecyclerViewAdapter.CustomVH>() {
+class CustomRecyclerViewAdapter(
+    private val todoDb: TodoDatabase
+): RecyclerView.Adapter<CustomRecyclerViewAdapter.CustomVH>() {
     private var todoList: ArrayList<Todo> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomVH {
         val binding = ViewTodoInfoCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CustomVH(binding)
+        return CustomVH(binding, todoDb)
     }
 
     override fun onBindViewHolder(holder: CustomVH, position: Int) {
@@ -30,11 +38,24 @@ class CustomRecyclerViewAdapter: RecyclerView.Adapter<CustomRecyclerViewAdapter.
         notifyDataSetChanged()
     }
 
-    class CustomVH(val binding: ViewTodoInfoCardBinding): RecyclerView.ViewHolder(binding.root) {
+    class CustomVH(
+        private val binding: ViewTodoInfoCardBinding,
+        private val todoDb: TodoDatabase
+    ): RecyclerView.ViewHolder(binding.root) {
 
         fun setData(todo: Todo) {
             binding.titleText.text = todo.title
             binding.subTitleText.text = todo.description
+            binding.checkBox.isChecked = todo.isChecked
+            binding.checkBox.setOnCheckedChangeListener { _, isChecked ->
+                todo.isChecked = isChecked
+                CoroutineScope(Dispatchers.IO).launch {
+                    todoDb.todoDao().update(todo)
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(binding.root.context,"Update Success", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
     }
 }

@@ -31,7 +31,7 @@ class TodoRegistrationViewModel(private val todoDb: TodoDatabase): ViewModel(){
         val description = description.value
         if (title != null && description != null) {
             CoroutineScope(Dispatchers.IO).launch {
-                todoDb.todoDao().insert(Todo(title, description))
+                todoDb.todoDao().insert(Todo(title, description, false))
             }
         }
     }
