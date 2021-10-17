@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rxandroidexample.databinding.FragmentTodoListBinding
 import com.example.rxandroidexample.room.TodoDatabase
+import com.example.rxandroidexample.view.CustomRecyclerViewAdapter
 
 class TodoListFragment : Fragment() {
     companion object {
@@ -39,8 +41,21 @@ class TodoListFragment : Fragment() {
             findNavController().navigate(it)
         }
 
-        viewModel.todoDb.todoDao().getAllTodoList().observe(this.viewLifecycleOwner) {
-            Log.i("Woody", "it = ${it.size}")
+        viewModel.todoDb.todoDao().getAllTodoList().observe(this.viewLifecycleOwner) { todoList ->
+            Log.i("Woody", "it = ${todoList.size}")
+            CustomRecyclerViewAdapter().apply {
+                this.setItems(todoList)
+            }
+            binding.todoRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            if (binding.todoRecyclerView.adapter == null) {
+                CustomRecyclerViewAdapter().apply {
+                    this.setItems(todoList)
+                }.also {
+                    binding.todoRecyclerView.adapter = it
+                }
+            }  else {
+                (binding.todoRecyclerView.adapter as? CustomRecyclerViewAdapter)?.setItems(todoList)
+            }
         }
     }
 }
