@@ -22,6 +22,8 @@ class TodoMainViewModel(val todoDb: TodoDatabase) : ViewModel() {
 
     val navEvent = SingleLiveEvent<NavDirections>()
 
+    val todoList = todoDb.todoDao().getAllTodoList()
+
     fun moveRegistrationActivity() {
         navEvent.value = TodoListFragmentDirections.actionTodoListFragmentToTodoRegistrationFragment()
     }

@@ -29,32 +29,21 @@ class TodoListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentTodoListBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
         initialize()
-        return binding.root
     }
 
     private fun initialize() {
         viewModel.navEvent.observe(this) {
             findNavController().navigate(it)
-        }
-
-        viewModel.todoDb.todoDao().getAllTodoList().observe(this.viewLifecycleOwner) { todoList ->
-            Log.i("Woody", "it = ${todoList.size}")
-            binding.todoRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            if (binding.todoRecyclerView.adapter == null) {
-                CustomRecyclerViewAdapter(
-                    TodoDatabase.getInstance(this.requireActivity().application)
-                ).apply {
-                    this.setItems(todoList)
-                }.also {
-                    binding.todoRecyclerView.adapter = it
-                }
-            }  else {
-                (binding.todoRecyclerView.adapter as? CustomRecyclerViewAdapter)?.setItems(todoList)
-            }
         }
     }
 }
