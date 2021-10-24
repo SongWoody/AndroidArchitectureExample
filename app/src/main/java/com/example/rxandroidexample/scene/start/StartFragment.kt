@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.example.rxandroidexample.databinding.FragmentStartBinding
+import com.example.rxandroidexample.util.SingleLiveEvent
 
 class StartFragment : Fragment() {
 
@@ -16,7 +18,11 @@ class StartFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentStartBinding
-    private lateinit var viewModel: StartViewModel
+    private val viewModel: StartViewModel by viewModels {
+        StartViewModel.Factory(navEen)
+    }
+
+    private val navEen: SingleLiveEvent<NavDirections> = SingleLiveEvent()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,19 +30,22 @@ class StartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentStartBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this).get(StartViewModel::class.java)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        binding.moveSecondFragmentButton.setOnClickListener {
-            findNavController().navigate(StartFragmentDirections.actionMainFragmentToSecondFragment())
-        }
-
-        binding.moveTodoFragmentButton.setOnClickListener {
-            findNavController().navigate(StartFragmentDirections.actionMainFragmentToTodoListFragment())
-        }
-
-        return binding.root
+        initialize()
     }
+
+    private fun initialize() {
+        navEen.observe(this.viewLifecycleOwner) {
+            findNavController().navigate(it)
+        }
+    }
+
 
 }
