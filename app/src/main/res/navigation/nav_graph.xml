@@ -24,7 +24,7 @@
         tools:layout="@layout/second_fragment" />
     <fragment
         android:id="@+id/todoListFragment"
-        android:name="com.example.rxandroidexample.scene.todo.TodoListFragment"
+        android:name="com.example.rxandroidexample.scene.todo.main.TodoListFragment"
         android:label="fragment_todo_list"
         tools:layout="@layout/fragment_todo_list" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/todoRegistrationFragment"
-        android:name="com.example.rxandroidexample.scene.todo.TodoRegistrationFragment"
+        android:name="com.example.rxandroidexample.scene.todo.registration.TodoRegistrationFragment"
         android:label="TodoRegistrationFragment" />
 
 </navigation>

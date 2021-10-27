@@ -1,4 +1,4 @@
-package com.example.rxandroidexample.scene.todo
+package com.example.rxandroidexample.scene.todo.registration
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

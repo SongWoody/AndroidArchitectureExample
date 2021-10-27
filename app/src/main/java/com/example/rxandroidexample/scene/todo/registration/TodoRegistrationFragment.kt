@@ -1,4 +1,4 @@
-package com.example.rxandroidexample.scene.todo
+package com.example.rxandroidexample.scene.todo.registration
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

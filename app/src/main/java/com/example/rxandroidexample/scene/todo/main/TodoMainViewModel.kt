@@ -1,4 +1,4 @@
-package com.example.rxandroidexample.scene.todo
+package com.example.rxandroidexample.scene.todo.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.rxandroidexample.scene.todo.TodoMainViewModel" />
+            type="com.example.rxandroidexample.scene.todo.main.TodoMainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
