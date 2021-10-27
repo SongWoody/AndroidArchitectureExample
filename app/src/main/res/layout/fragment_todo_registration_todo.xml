@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:text="@string/add"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:onClick="@{()->viewModel.addTodo()}"/>
+            android:onClick="@{()->viewModel.addTodo(viewModel.title, viewModel.description)}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -26,9 +26,7 @@ class TodoRegistrationViewModel(private val todoDb: TodoDatabase): ViewModel(){
     val title = MutableLiveData("")
     val description = MutableLiveData("")
 
-    fun addTodo() {
-        val title = title.value
-        val description = description.value
+    fun addTodo(title: String?, description: String?) {
         if (title != null && description != null) {
             CoroutineScope(Dispatchers.IO).launch {
                 todoDb.todoDao().insert(Todo(title, description, false))
