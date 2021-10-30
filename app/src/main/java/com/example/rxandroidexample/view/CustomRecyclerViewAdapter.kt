@@ -19,27 +19,6 @@ import kotlinx.coroutines.withContext
 class CustomRecyclerViewAdapter(
     private val todoDb: TodoDatabase
 ): RecyclerView.Adapter<CustomRecyclerViewAdapter.CustomVH>() {
-    companion object {
-        @BindingAdapter("todoListData")
-        @JvmStatic
-        fun setItems(view: RecyclerView, todoList: List<Todo>?) {
-            todoList ?: return
-            if (view.adapter == null) {
-                view.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
-                CustomRecyclerViewAdapter(
-                    TodoDatabase.getInstance(view.context)
-                ).apply {
-                    this.setItems(todoList)
-                }.also {
-                    view.adapter = it
-                }
-            }  else {
-                (view.adapter as? CustomRecyclerViewAdapter)?.setItems(todoList)
-            }
-        }
-    }
-
-
     private var todoList: ArrayList<Todo> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomVH {

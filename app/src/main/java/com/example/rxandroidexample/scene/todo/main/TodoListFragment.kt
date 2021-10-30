@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rxandroidexample.databinding.FragmentTodoListBinding
 import com.example.rxandroidexample.room.TodoDatabase
+import com.example.rxandroidexample.view.CustomRecyclerViewAdapter
 
 class TodoListFragment : Fragment() {
     companion object {
@@ -27,13 +29,14 @@ class TodoListFragment : Fragment() {
     ): View {
         binding = FragmentTodoListBinding.inflate(inflater, container, false)
 
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = this.viewLifecycleOwner
 
         initialize()
     }
@@ -41,6 +44,22 @@ class TodoListFragment : Fragment() {
     private fun initialize() {
         viewModel.navEvent.observe(this) {
             findNavController().navigate(it)
+        }
+
+        TodoDatabase.getInstance(this.requireActivity().application).todoDao().getAllTodoList().observe(this.viewLifecycleOwner) { todoList ->
+            todoList ?: return@observe
+            if (binding.todoRecyclerView.adapter == null) {
+                binding.todoRecyclerView.layoutManager = LinearLayoutManager(this.requireActivity(), LinearLayoutManager.VERTICAL, false)
+                CustomRecyclerViewAdapter(
+                    TodoDatabase.getInstance(this.requireActivity().application)
+                ).apply {
+                    this.setItems(todoList)
+                }.also {
+                    binding.todoRecyclerView.adapter = it
+                }
+            }  else {
+                (binding.todoRecyclerView.adapter as? CustomRecyclerViewAdapter)?.setItems(todoList)
+            }
         }
     }
 }
