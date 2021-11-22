@@ -2,10 +2,12 @@ package com.example.rxandroidexample.scene.second
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.example.rxandroidexample.R
 
 class SecondFragment : Fragment() {
@@ -14,7 +16,7 @@ class SecondFragment : Fragment() {
         fun newInstance() = SecondFragment()
     }
 
-    private lateinit var viewModel: SecondViewModel
+    private val viewModel: SecondViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,9 +25,9 @@ class SecondFragment : Fragment() {
         return inflater.inflate(R.layout.second_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SecondViewModel::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.i("Woody", viewModel.name)
     }
 
 }
