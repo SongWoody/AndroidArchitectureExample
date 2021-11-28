@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rxandroidexample.databinding.FragmentTodoListBinding
 import com.example.rxandroidexample.room.TodoDatabase
+import com.example.rxandroidexample.scene.todo.registration.TodoRegistrationViewModel
 import com.example.rxandroidexample.view.CustomRecyclerViewAdapter
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -1,7 +1,7 @@
 package com.example.rxandroidexample.di
 
-import android.app.Application
-import android.util.Log
+import android.content.Context
+import androidx.room.Room
 import com.example.rxandroidexample.room.TodoDatabase
 import dagger.Module
 import dagger.Provides
@@ -16,8 +16,7 @@ object ApplicationModule {
 
     @Singleton
     @Provides
-    fun provideTodoDb(@ApplicationContext context: Application): TodoDatabase {
-        Log.i("Woody","todoDb")
-        return TodoDatabase.getInstance(context)
-    }
+    fun provideTodoDb(
+        @ApplicationContext context: Context
+    ) = Room.databaseBuilder(context, TodoDatabase::class.java,"TodoDb").build()
 }
