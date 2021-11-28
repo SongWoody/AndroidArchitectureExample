@@ -1,12 +1,16 @@
 package com.example.rxandroidexample.scene.todo.main
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
 import com.example.rxandroidexample.room.TodoDatabase
 import com.example.rxandroidexample.util.SingleLiveEvent
+import javax.inject.Inject
 
-class TodoMainViewModel(val todoDb: TodoDatabase) : ViewModel() {
+class TodoMainViewModel @ViewModelInject constructor(
+    private val todoDb: TodoDatabase
+) : ViewModel() {
 
     class Factory constructor(
         private val todoDb: TodoDatabase

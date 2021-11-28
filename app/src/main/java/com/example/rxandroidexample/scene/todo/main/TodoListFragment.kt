@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rxandroidexample.databinding.FragmentTodoListBinding
 import com.example.rxandroidexample.room.TodoDatabase
 import com.example.rxandroidexample.view.CustomRecyclerViewAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TodoListFragment : Fragment() {
     companion object {
         @JvmStatic
@@ -19,9 +21,7 @@ class TodoListFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentTodoListBinding
-    private val viewModel: TodoMainViewModel by viewModels {
-        TodoMainViewModel.Factory(TodoDatabase.getInstance(this.requireActivity().application))
-    }
+    private val viewModel: TodoMainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
