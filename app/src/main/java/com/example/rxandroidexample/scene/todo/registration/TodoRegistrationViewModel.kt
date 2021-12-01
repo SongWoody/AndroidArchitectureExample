@@ -1,5 +1,6 @@
 package com.example.rxandroidexample.scene.todo.registration
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -9,7 +10,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class TodoRegistrationViewModel(private val todoDb: TodoDatabase): ViewModel(){
+class TodoRegistrationViewModel @ViewModelInject constructor(
+    private val todoDb: TodoDatabase
+): ViewModel() {
 
     class Factory constructor(
         private val todoDb: TodoDatabase
