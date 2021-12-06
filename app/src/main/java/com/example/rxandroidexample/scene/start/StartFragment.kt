@@ -1,7 +1,6 @@
 package com.example.rxandroidexample.scene.start
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import com.example.rxandroidexample.data.TestUser
 import com.example.rxandroidexample.databinding.FragmentStartBinding
 import com.example.rxandroidexample.util.SingleLiveEvent
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class StartFragment : Fragment() {
@@ -28,8 +25,6 @@ class StartFragment : Fragment() {
     }
 
     private val navEen: SingleLiveEvent<NavDirections> = SingleLiveEvent()
-    @Inject
-    lateinit var user: TestUser
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,8 +47,6 @@ class StartFragment : Fragment() {
         navEen.observe(this.viewLifecycleOwner) {
             findNavController().navigate(it)
         }
-
-        Log.i("[Woody]", user.name)
     }
 
 
