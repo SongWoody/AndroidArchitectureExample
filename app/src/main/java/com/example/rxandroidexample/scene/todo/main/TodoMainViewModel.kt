@@ -6,10 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
 import com.example.rxandroidexample.room.TodoDatabase
 import com.example.rxandroidexample.util.SingleLiveEvent
-import javax.inject.Inject
 
 class TodoMainViewModel @ViewModelInject constructor(
-    private val todoDb: TodoDatabase
+    todoDb: TodoDatabase
 ) : ViewModel() {
 
     class Factory constructor(

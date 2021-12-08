@@ -1,12 +1,9 @@
 package com.example.rxandroidexample.view
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rxandroidexample.databinding.ViewTodoInfoCardBinding
 import com.example.rxandroidexample.room.Todo
