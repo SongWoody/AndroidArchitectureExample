@@ -1,5 +1,7 @@
 package com.example.rxandroidexample.scene.start
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,10 +23,11 @@ class StartFragment : Fragment() {
 
     private lateinit var binding: FragmentStartBinding
     private val viewModel: StartViewModel by viewModels {
-        StartViewModel.Factory(navEen)
+        StartViewModel.Factory(navEen, startActivityEvent)
     }
 
     private val navEen: SingleLiveEvent<NavDirections> = SingleLiveEvent()
+    private val startActivityEvent : SingleLiveEvent<Class<out Activity>> = SingleLiveEvent()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,6 +49,10 @@ class StartFragment : Fragment() {
     private fun initialize() {
         navEen.observe(this.viewLifecycleOwner) {
             findNavController().navigate(it)
+        }
+
+        startActivityEvent.observe(this.viewLifecycleOwner) {
+            requireActivity().startActivity(Intent(context, it))
         }
     }
 
