@@ -11,12 +11,12 @@ class ComposeActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Greeting()
+            Greeting("Hello Compose World")
         }
     }
 }
 
 @Composable
-private fun Greeting() {
-    Text(text = "Hello Compose World")
+private fun Greeting(title: String) {
+    Text(text = title)
 }
