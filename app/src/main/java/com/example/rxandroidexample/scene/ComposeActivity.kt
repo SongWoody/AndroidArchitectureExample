@@ -3,8 +3,10 @@ package com.example.rxandroidexample.scene
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 
 class ComposeActivity: AppCompatActivity() {
 
@@ -18,5 +20,14 @@ class ComposeActivity: AppCompatActivity() {
 
 @Composable
 private fun Greeting(title: String) {
-    Text(text = title)
+    Column() {
+        Text(text = title)
+        Text(text = "hi")
+    }
+}
+
+@Preview
+@Composable
+fun PreviewMessageCard() {
+    Greeting(title = "Hello?")
 }
