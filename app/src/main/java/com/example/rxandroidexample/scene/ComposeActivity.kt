@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.Text
@@ -26,10 +27,16 @@ class ComposeActivity: AppCompatActivity() {
 @Composable
 private fun Greeting(title: String) {
     Row(verticalAlignment = Alignment.CenterVertically) {
-        Image(
-            painter = painterResource(id = R.drawable.ic_baseline_add_24),
-            contentDescription = ""
-        )
+        Box() {
+            Image(
+                painter = painterResource(id = R.mipmap.ic_test),
+                contentDescription = ""
+            )
+            Image(
+                painter = painterResource(id = R.drawable.ic_baseline_add_24),
+                contentDescription = ""
+            )
+        }
         Column() {
             Text(text = title)
             Text(text = "hi")
