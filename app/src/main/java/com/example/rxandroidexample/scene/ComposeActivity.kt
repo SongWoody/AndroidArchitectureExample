@@ -4,9 +4,10 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -26,14 +27,28 @@ class ComposeActivity: ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MaterialTheme {
-                Greeting(Message("Welcome", "Hello Compose World"))
+                MessageList(listOf(
+                    Message("Welcome", "Hello Compose World"),
+                    Message("Welcome2", "Hello Compose World2"),
+                    Message("Welcome3", "Hello Compose World3"),
+                    Message("Welcome4", "Hello Compose World4")
+                ))
             }
         }
     }
 }
 
 @Composable
-private fun Greeting(msg: Message) {
+private fun MessageList(messages: List<Message>) {
+    LazyColumn{
+        items(messages) { msg ->
+            MessageCard(msg = msg)
+        }
+    }
+}
+
+@Composable
+private fun MessageCard(msg: Message) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.padding(8.dp)
@@ -70,6 +85,14 @@ private fun Greeting(msg: Message) {
 @Composable
 fun PreviewMessageCard() {
     MaterialTheme {
-        Greeting(Message("Preview","Preview Body"))
+        MessageList(listOf(
+            Message("Preview1","Preview Body1"),
+            Message("Preview2","Preview Body2"),
+            Message("Preview3","Preview Body3"),
+            Message("Preview4","Preview Body4"),
+            Message("Preview5","Preview Body5"),
+            Message("Preview6","Preview Body6"),
+            Message("Preview7","Preview Body7")
+        ))
     }
 }
