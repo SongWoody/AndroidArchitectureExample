@@ -5,13 +5,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,10 +29,10 @@ class ComposeActivity: ComponentActivity() {
         setContent {
             MaterialTheme {
                 MessageList(listOf(
-                    Message("Welcome", "Hello Compose World"),
-                    Message("Welcome2", "Hello Compose World2"),
-                    Message("Welcome3", "Hello Compose World3"),
-                    Message("Welcome4", "Hello Compose World4")
+                    Message("Welcome", "Hello Compose World\nHI"),
+                    Message("Welcome2", "Hello Compose World2\nHello Compose World2\nHello Compose World2"),
+                    Message("Welcome3", "Hello Compose World3\nHI"),
+                    Message("Welcome4", "Hello Compose World4\nHI")
                 ))
             }
         }
@@ -67,14 +68,19 @@ private fun MessageCard(msg: Message) {
             )
         }
         Spacer(modifier = Modifier.width(8.dp))
-        Column {
+        var isExpanded by remember { mutableStateOf(false) }
+        Column(modifier = Modifier.clickable {
+            isExpanded = !isExpanded
+        }) {
             Text(
                 text = msg.title,
                 color = MaterialTheme.colors.secondaryVariant
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = msg.body
+                text = msg.body,
+                maxLines = if (isExpanded) Int.MAX_VALUE else 1,
+                style = MaterialTheme.typography.body2
             )
         }
     }
@@ -86,7 +92,7 @@ private fun MessageCard(msg: Message) {
 fun PreviewMessageCard() {
     MaterialTheme {
         MessageList(listOf(
-            Message("Preview1","Preview Body1"),
+            Message("Preview1","Preview Body1 Logn Body mmmmmmmmmmsssssssssggggggg"),
             Message("Preview2","Preview Body2"),
             Message("Preview3","Preview Body3"),
             Message("Preview4","Preview Body4"),
