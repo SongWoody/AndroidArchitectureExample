@@ -1,5 +1,6 @@
 package com.example.rxandroidexample.scene
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
@@ -19,10 +20,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.MutableLiveData
 import com.example.rxandroidexample.R
 import com.example.rxandroidexample.data.Message
 
@@ -32,7 +33,7 @@ class ComposeActivity: ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MaterialTheme {
-                MessageList(listOf(
+                composeView(listOf(
                     Message("Welcome", "Hello Compose World\nHI"),
                     Message("Welcome2", "Hello Compose World2\nHello Compose World2\nHello Compose World2"),
                     Message("Welcome3", "Hello Compose World3\nHI"),
@@ -44,11 +45,18 @@ class ComposeActivity: ComponentActivity() {
 }
 
 @Composable
-private fun MessageList(messages: List<Message>) {
-    LazyColumn{
-        items(messages) { msg ->
-            MessageCard(msg = msg)
+private fun composeView(messages: List<Message>) {
+    val context = LocalContext.current
+    Column {
+        Button(onClick = { context.startActivity(Intent(context, ComposeActivity2::class.java)) }) {
+            Text(text = "Next Page")
         }
+        LazyColumn{
+            items(messages) { msg ->
+                MessageCard(msg = msg)
+            }
+        }
+
     }
 }
 
@@ -117,7 +125,7 @@ private fun MessageCard(msg: Message) {
 @Composable
 fun PreviewMessageCard() {
     MaterialTheme {
-        MessageList(listOf(
+        composeView(listOf(
             Message("Preview1","Preview Body1 Logn Body mmmmmmmmmmsssssssssggggggg"),
             Message("Preview2","Preview Body2"),
             Message("Preview3","Preview Body3"),
