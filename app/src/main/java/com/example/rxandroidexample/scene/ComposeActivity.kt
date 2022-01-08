@@ -48,8 +48,10 @@ class ComposeActivity: ComponentActivity() {
 private fun composeView(messages: List<Message>) {
     val context = LocalContext.current
     Column {
-        Button(onClick = { context.startActivity(Intent(context, ComposeActivity2::class.java)) }) {
-            Text(text = "Next Page")
+        Box(Modifier.fillMaxWidth().padding(15.dp)) {
+            Button(modifier = Modifier.align(Alignment.Center),onClick = { context.startActivity(Intent(context, ComposeActivity2::class.java)) }) {
+                Text(text = "Next Page")
+            }
         }
         LazyColumn{
             items(messages) { msg ->
