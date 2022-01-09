@@ -1,4 +1,4 @@
-package com.example.rxandroidexample.scene
+package com.example.rxandroidexample.scene.compose
 
 import android.content.Intent
 import android.content.res.Configuration

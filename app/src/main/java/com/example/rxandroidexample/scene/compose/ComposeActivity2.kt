@@ -1,4 +1,4 @@
-package com.example.rxandroidexample.scene
+package com.example.rxandroidexample.scene.compose
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
