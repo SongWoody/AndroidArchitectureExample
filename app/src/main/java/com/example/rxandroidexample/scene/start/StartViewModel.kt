@@ -4,7 +4,7 @@ import android.app.Activity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
-import com.example.rxandroidexample.scene.ComposeActivity
+import com.example.rxandroidexample.scene.compose.ComposeActivity
 import com.example.rxandroidexample.util.SingleLiveEvent
 
 class StartViewModel(

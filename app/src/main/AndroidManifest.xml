@@ -20,8 +20,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".scene.ComposeActivity"/>
-        <activity android:name=".scene.ComposeActivity2"/>
+        <activity android:name=".scene.compose.ComposeActivity"/>
+        <activity android:name=".scene.compose.ComposeActivity2"/>
     </application>
 
 </manifest>
