@@ -78,10 +78,10 @@ private fun ComposeView() {
                         Text(text = "Next Page")
                     }
                 }
+                val alertRemember = remember { mutableStateOf(false) }
                 Box(modifier = Modifier
                     .fillMaxWidth()
                     .padding(15.dp)){
-                    val alertRemember = remember { mutableStateOf(false) }
                     Button(
                         modifier = Modifier.align(Alignment.Center),
                         onClick = {
@@ -91,6 +91,14 @@ private fun ComposeView() {
                         Text(text = "Show Alter")
                     }
                 }
+                ComposeAlert(
+                    alertRemember,
+                    "Title",
+                    "Message",
+                    onConfirmButtonClick = {
+                        alertRemember.value = false
+                    }
+                )
             }
         }
     }
