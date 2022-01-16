@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -74,6 +76,19 @@ private fun ComposeView() {
                             )
                         }) {
                         Text(text = "Next Page")
+                    }
+                }
+                Box(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(15.dp)){
+                    val alertRemember = remember { mutableStateOf(false) }
+                    Button(
+                        modifier = Modifier.align(Alignment.Center),
+                        onClick = {
+                            alertRemember.value = true
+                        }
+                    ) {
+                        Text(text = "Show Alter")
                     }
                 }
             }
