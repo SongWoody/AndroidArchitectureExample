@@ -99,6 +99,18 @@ private fun ComposeView() {
                         alertRemember.value = false
                     }
                 )
+                Box(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(15.dp)){
+                    Button(
+                        modifier = Modifier.align(Alignment.Center),
+                        onClick = {
+                            context.startActivity(Intent(context, ComposeLifeCycleTestActivity::class.java))
+                        }
+                    ) {
+                        Text(text = "Go to ComposeLifeCycleTestActivity")
+                    }
+                }
             }
         }
     }

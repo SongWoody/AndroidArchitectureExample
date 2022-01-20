@@ -22,6 +22,7 @@
 
         <activity android:name=".scene.compose.ComposeActivity"/>
         <activity android:name=".scene.compose.ComposeActivity2"/>
+        <activity android:name=".scene.compose.ComposeLifeCycleTestActivity"/>
     </application>
 
 </manifest>
