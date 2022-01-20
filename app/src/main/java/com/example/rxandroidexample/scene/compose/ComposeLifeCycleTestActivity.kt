@@ -9,9 +9,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -39,6 +37,9 @@ fun PreviewLifecycleTestView() {
 @Composable
 fun LifecycleTestView() {
     val rememberCount = remember {
+        mutableStateOf(0)
+    }
+    val rememberButtonCount = remember {
         mutableStateOf(0)
     }
     printLog("create Scaffold")
@@ -80,6 +81,25 @@ fun LifecycleTestView() {
             ) {
                 printLog("create Text 2")
                 Text(text = "count = ${rememberCount2.value}")
+            }
+
+            printLog("create Click Me Button")
+            Button(
+                modifier = Modifier
+                    .background(Color(0x2200ff00))
+                    .align(Alignment.CenterHorizontally)
+                    .padding(top = 10.dp, bottom = 10.dp),
+                onClick = {
+                    rememberButtonCount.value++
+                }
+            ) {
+                printLog("create Click Me Text")
+                Text(text = "Click Me")
+            }
+
+            if (rememberButtonCount.value in 0..3) {
+                printLog("create count text")
+                Text(text = "count ${rememberButtonCount.value}")
             }
         }
     }
