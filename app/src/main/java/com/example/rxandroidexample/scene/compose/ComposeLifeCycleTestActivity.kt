@@ -1,13 +1,12 @@
 package com.example.rxandroidexample.scene.compose
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -55,6 +54,23 @@ fun LifecycleTestView() {
                 .fillMaxWidth(1f)
                 .fillMaxHeight(1f)
         ) {
+            Column(
+                Modifier
+                    .clickable {
+                        Log.i("Woody","Click Test")
+                    }
+                    .padding(30.dp)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .background(Color(0xffff0000))
+                        .height(30.dp)
+                        .fillMaxWidth()
+                ) {
+
+                }
+            }
+
             printLog("create Button 1")
             Button(
                 modifier = Modifier
