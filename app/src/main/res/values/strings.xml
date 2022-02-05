@@ -7,4 +7,5 @@
     <string name="move_second_fragment">Move Second Fragment</string>
     <string name="move_todo_fragment">Move Todo Fragment</string>
     <string name="move_compose_activity">Move Compose Activity</string>
+    <string name="title_activity_words_note">WordsNoteActivity</string>
 </resources>
