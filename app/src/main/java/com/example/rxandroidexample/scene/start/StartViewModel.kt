@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
 import com.example.rxandroidexample.scene.compose.ComposeActivity
+import com.example.rxandroidexample.scene.compose.WordsNoteActivity
 import com.example.rxandroidexample.util.SingleLiveEvent
 
 class StartViewModel(
@@ -35,5 +36,9 @@ class StartViewModel(
 
     fun moveComposeActivity() {
         startActivityEvent.value = ComposeActivity::class.java
+    }
+
+    fun moveWordsNoteActivity() {
+        startActivityEvent.value = WordsNoteActivity::class.java
     }
 }
