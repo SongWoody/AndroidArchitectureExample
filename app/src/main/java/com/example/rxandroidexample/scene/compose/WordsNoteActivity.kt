@@ -11,8 +11,11 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.MutableLiveData
+import com.example.rxandroidexample.scene.compose.data.Word
 import com.example.rxandroidexample.scene.compose.ui.theme.RxAndroidExampleTheme
 
 class WordsNoteActivity : ComponentActivity() {
@@ -27,7 +30,7 @@ class WordsNoteActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    Greeting(viewModel)
                 }
             }
         }
@@ -35,9 +38,11 @@ class WordsNoteActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
+fun Greeting(viewModel: WordsNoteActivityViewModel) {
+    val word = viewModel.word.observeAsState()
     Column() {
-        Text(text = "Hello $name!")
+        Text(text = "Word: ${word.value?.word}!")
+        Text(text = "Mean: ${word.value?.mean}!")
     }
 }
 
@@ -45,7 +50,7 @@ fun Greeting(name: String) {
 @Composable
 fun DefaultPreview() {
     RxAndroidExampleTheme {
-        Greeting("Android")
+//        Greeting(view)
     }
 }
 

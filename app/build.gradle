@@ -95,4 +95,5 @@ dependencies {
     implementation 'androidx.activity:activity-compose:1.4.0'
     implementation 'androidx.compose.material:material:1.0.5'
     implementation 'androidx.compose.runtime:runtime:1.0.5'
+    implementation 'androidx.compose.runtime:runtime-livedata:1.0.5'
 }
