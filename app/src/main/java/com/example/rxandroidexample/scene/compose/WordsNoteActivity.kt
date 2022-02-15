@@ -6,10 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
@@ -43,6 +40,12 @@ fun Greeting(viewModel: WordsNoteActivityViewModel) {
     Column() {
         Text(text = "Word: ${word.value?.word}!")
         Text(text = "Mean: ${word.value?.mean}!")
+
+        Button(onClick = {
+            viewModel.word.value = Word("Exercise","운동하다")
+        }) {
+            Text(text = "Test Button")
+        }
     }
 }
 
