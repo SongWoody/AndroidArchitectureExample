@@ -6,12 +6,12 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.MutableLiveData
 import com.example.rxandroidexample.scene.compose.data.Word
 import com.example.rxandroidexample.scene.compose.ui.theme.RxAndroidExampleTheme
 
@@ -45,6 +45,12 @@ fun Greeting(viewModel: WordsNoteActivityViewModel) {
             viewModel.word.value = Word("Exercise","운동하다")
         }) {
             Text(text = "Test Button")
+        }
+    }
+
+    LazyColumn {
+        items(5) {
+            Text(text = "Item $this")
         }
     }
 }
