@@ -5,5 +5,8 @@ import androidx.lifecycle.ViewModel
 import com.example.rxandroidexample.scene.compose.data.Word
 
 class WordsNoteActivityViewModel: ViewModel() {
-    val word = MutableLiveData(Word("Compose", "구성하다"))
+    val words = MutableLiveData(listOf(
+        Word("Compose", "구성하다"),
+        Word("Dentist", "치과 의사")
+    ))
 }
