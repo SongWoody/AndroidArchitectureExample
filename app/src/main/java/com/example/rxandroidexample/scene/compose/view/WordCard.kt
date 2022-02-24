@@ -43,5 +43,6 @@ fun Preview() {
     ) {
         WordCard(word = Word("Test","테스트"))
         WordCard(word = Word("Test1","테스트1"))
+        WordCard(word = Word("Test2","테스트2"))
     }
 }
