@@ -40,7 +40,7 @@ class WordsNoteActivity : ComponentActivity() {
 fun Greeting(viewModel: WordsNoteActivityViewModel) {
     val words = viewModel.words.observeAsState()
     LazyColumn(
-        Modifier.padding(top = 12.dp)
+        Modifier.padding(top = 14.dp)
     ) {
         items(words.value ?: listOf()) { item: Word ->
             WordCard(word = item)

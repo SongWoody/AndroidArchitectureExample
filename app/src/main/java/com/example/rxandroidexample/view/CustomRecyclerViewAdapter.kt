@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rxandroidexample.databinding.ViewTodoInfoCardBinding
-import com.example.rxandroidexample.room.Todo
-import com.example.rxandroidexample.room.TodoDatabase
+import com.example.rxandroidexample.room.todo.Todo
+import com.example.rxandroidexample.room.todo.TodoDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

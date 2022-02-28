@@ -1,4 +1,4 @@
-package com.example.rxandroidexample.room
+package com.example.rxandroidexample.room.todo
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

@@ -4,7 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
-import com.example.rxandroidexample.room.TodoDatabase
+import com.example.rxandroidexample.room.todo.TodoDatabase
 import com.example.rxandroidexample.util.SingleLiveEvent
 
 class TodoMainViewModel @ViewModelInject constructor(

@@ -1,4 +1,4 @@
-package com.example.rxandroidexample.room
+package com.example.rxandroidexample.room.todo
 
 import android.content.Context
 import androidx.room.Database
@@ -13,7 +13,7 @@ abstract class TodoDatabase: RoomDatabase() {
         private const val DB_NAME = "todo-database"
         private var instance: TodoDatabase? = null
 
-        fun getInstance(context: Context):TodoDatabase {
+        fun getInstance(context: Context): TodoDatabase {
             return instance ?: synchronized(this) {
                 return buildDatabase(context)
             }

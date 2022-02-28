@@ -2,7 +2,7 @@ package com.example.rxandroidexample.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.rxandroidexample.room.TodoDatabase
+import com.example.rxandroidexample.room.todo.TodoDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

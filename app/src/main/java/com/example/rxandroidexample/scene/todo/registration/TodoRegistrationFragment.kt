@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.rxandroidexample.databinding.FragmentTodoRegistrationTodoBinding
-import com.example.rxandroidexample.room.TodoDatabase
+import com.example.rxandroidexample.room.todo.TodoDatabase
 
 class TodoRegistrationFragment : Fragment() {
     companion object {
