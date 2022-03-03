@@ -14,6 +14,6 @@ interface WordDao {
     @Delete
     fun delete(word: Word)
 
-    @Query("SELECT * FROM TODO")
+    @Query("SELECT * FROM Word")
     fun getAllTodoList(): LiveData<List<Word>>
 }
