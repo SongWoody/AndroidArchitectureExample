@@ -5,5 +5,6 @@ import com.example.rxandroidexample.MyApplication
 import com.example.rxandroidexample.room.word.WordDatabase
 
 class WordsNoteActivityViewModel: ViewModel() {
-    val wordsLive = WordDatabase.getInstance(MyApplication.context).wordDao().getAllTodoList()
+    val db = WordDatabase.getInstance(MyApplication.context)
+    val wordsLive = db.wordDao().getAllTodoList()
 }

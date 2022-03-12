@@ -24,7 +24,8 @@ abstract class WordDatabase: RoomDatabase() {
                 context,
                 WordDatabase::class.java,
                 DB_NAME
-            ).build()
+            )
+                .build()
         }
      }
 }
