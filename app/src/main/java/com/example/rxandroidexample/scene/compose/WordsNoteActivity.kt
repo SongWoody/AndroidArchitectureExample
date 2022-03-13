@@ -47,7 +47,7 @@ class WordsNoteActivity : ComponentActivity() {
 @Composable
 fun Greeting(viewModel: WordsNoteActivityViewModel) {
     val wordsLive: State<List<Word>?> = viewModel.wordsLive.observeAsState()
-    Column() {
+    Column {
         Button(
             modifier = Modifier.align(Alignment.CenterHorizontally),
             onClick = {
