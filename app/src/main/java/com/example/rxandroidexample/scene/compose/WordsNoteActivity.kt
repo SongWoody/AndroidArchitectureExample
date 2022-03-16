@@ -1,9 +1,12 @@
 package com.example.rxandroidexample.scene.compose
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.gestures.detectDragGestures
+import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -19,6 +22,7 @@ import com.example.rxandroidexample.room.word.Word
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.rxandroidexample.scene.compose.ui.theme.RxAndroidExampleTheme
@@ -46,10 +50,22 @@ class WordsNoteActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(viewModel: WordsNoteActivityViewModel) {
+    Log.i("","Greeting")
     val wordsLive: State<List<Word>?> = viewModel.wordsLive.observeAsState()
     Column {
         Button(
-            modifier = Modifier.align(Alignment.CenterHorizontally),
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .pointerInput(Unit) {
+                    detectDragGestures { change, dragAmount ->
+                        Log.i("pointerInput", "$change, $dragAmount")
+                    }
+                    detectDragGesturesAfterLongPress(
+                        onDrag = { change, dragAmount ->
+                            Log.i("detectDragGesturesAfterLongPress", "$change, $dragAmount")
+                        }
+                    )
+                },
             onClick = {
             CoroutineScope(Dispatchers.IO).launch {
                 viewModel.db.wordDao().insert(Word("Apple","사과"))
