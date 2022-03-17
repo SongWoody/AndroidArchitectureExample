@@ -55,17 +55,7 @@ fun Greeting(viewModel: WordsNoteActivityViewModel) {
     Column {
         Button(
             modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .pointerInput(Unit) {
-                    detectDragGestures { change, dragAmount ->
-                        Log.i("pointerInput", "$change, $dragAmount")
-                    }
-                    detectDragGesturesAfterLongPress(
-                        onDrag = { change, dragAmount ->
-                            Log.i("detectDragGesturesAfterLongPress", "$change, $dragAmount")
-                        }
-                    )
-                },
+                .align(Alignment.CenterHorizontally),
             onClick = {
             CoroutineScope(Dispatchers.IO).launch {
                 viewModel.db.wordDao().insert(Word("Apple","사과"))

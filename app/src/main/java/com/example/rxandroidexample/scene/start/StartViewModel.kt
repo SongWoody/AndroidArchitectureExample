@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
 import com.example.rxandroidexample.scene.compose.ComposeActivity
+import com.example.rxandroidexample.scene.compose.TouchTestActivity
 import com.example.rxandroidexample.scene.compose.WordsNoteActivity
 import com.example.rxandroidexample.util.SingleLiveEvent
 
@@ -40,5 +41,9 @@ class StartViewModel(
 
     fun moveWordsNoteActivity() {
         startActivityEvent.value = WordsNoteActivity::class.java
+    }
+
+    fun moveTouchTestActivity() {
+        startActivityEvent.value = TouchTestActivity::class.java
     }
 }

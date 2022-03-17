@@ -11,6 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RxAndroidExample">
         <activity
+            android:name=".scene.compose.TouchTestActivity"
+            android:exported="false"
+            android:label="@string/title_activity_touch_test"
+            android:theme="@style/Theme.RxAndroidExample" />
+        <activity
             android:name=".scene.compose.WordsNoteActivity"
             android:exported="false"
             android:label="@string/title_activity_words_note"

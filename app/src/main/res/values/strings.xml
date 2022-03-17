@@ -8,5 +8,7 @@
     <string name="move_todo_fragment">Move Todo Fragment</string>
     <string name="move_compose_activity">Move Compose Activity</string>
     <string name="move_word_note_activity">Move Words Note Activity</string>
+    <string name="move_touch_test_activity">Move Touch Test Activity</string>
     <string name="title_activity_words_note">WordsNoteActivity</string>
+    <string name="title_activity_touch_test">TouchTestActivity</string>
 </resources>
