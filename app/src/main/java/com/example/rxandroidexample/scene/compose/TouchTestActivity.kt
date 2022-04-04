@@ -6,26 +6,24 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.gestures.rememberScrollableState
-import androidx.compose.foundation.gestures.scrollable
+import androidx.compose.foundation.gestures.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.consumeAllChanges
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.example.rxandroidexample.scene.compose.ui.theme.RxAndroidExampleTheme
+import kotlin.math.roundToInt
 
 class TouchTestActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,55 +44,28 @@ class TouchTestActivity : ComponentActivity() {
 
 @Composable
 fun Greeting2() {
-    val count = remember {
-        mutableStateOf(0)
-    }
-    Column() {
-        Text(text = "Hello ${count.value}!",
-            modifier = Modifier.pointerInput(Unit) {
-                detectTapGestures(
-                    onPress = {
-                        Log.i("TouchTest", "onPress")
-                    },
-                    onDoubleTap = {
-                        Log.i("TouchTest", "onDoubleTap")
-                    },
-                    onLongPress = {
-                        Log.i("TouchTest", "onLongPress")
-                    },
-                    onTap = {
-                        Log.i("TouchTest", "onTap")
-                    }
-                )
-            })
-        Column(
-            modifier = Modifier
-                .background(Color.Gray)
-                .size(200.dp)
-                .verticalScroll(rememberScrollState())
-        ) {
-            repeat(20) {
-                Text(text = "Item $it", modifier = Modifier.padding(3.dp))
-            }
-        }
-        val offset = remember { mutableStateOf(0f) }
+    Box(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        var offsetX by remember { mutableStateOf(0f) }
+        var offsetY by remember { mutableStateOf(0f) }
+        Log.d("","changes")
         Box(
-            Modifier
-                .size(150.dp)
-                .scrollable(
-                    orientation = Orientation.Vertical,
-                    state = rememberScrollableState { delta ->
-                        offset.value += delta
-                        delta
+            modifier = Modifier
+                .offset {
+                    IntOffset(offsetX.roundToInt(), offsetY.roundToInt())
+                }
+                .size(50.dp)
+                .background(Color.Green)
+                .pointerInput(Unit) {
+                    detectDragGestures { change, dragAmount ->
+                        change.consumeAllChanges()
+                        offsetX += dragAmount.x
+                        offsetY += dragAmount.y
                     }
-                )
-                .background(Color.LightGray),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(offset.value.toString())
-        }
+                }
+        ) {}
     }
-    
 }
 
 @Preview(showBackground = true)
