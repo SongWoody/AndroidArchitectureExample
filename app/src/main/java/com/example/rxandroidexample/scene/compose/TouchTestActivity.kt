@@ -57,13 +57,12 @@ fun Greeting2() {
                 }
                 .size(50.dp)
                 .background(Color.Green)
-                .pointerInput(Unit) {
-                    detectDragGestures { change, dragAmount ->
-                        change.consumeAllChanges()
-                        offsetX += dragAmount.x
-                        offsetY += dragAmount.y
-                    }
-                }
+                .draggable(
+                    orientation = Orientation.Horizontal,
+                    state = rememberDraggableState(onDelta = {
+                        offsetX += it
+                    })
+                )
         ) {}
     }
 }
